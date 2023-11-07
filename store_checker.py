@@ -101,12 +101,12 @@ class StoreChecker:
                 )
             )
             for part_id, part in store.get("parts").items():
-                if part.get("storeSelectionEnabled") is True:
+                if part.get("pickupDisplay") == 'available':
                     stock_available = True
                     print(
                         " - {} {} ({})".format(
                             crayons.green("✔"),
-                            crayons.green(part.get("storePickupProductTitle")),
+                            crayons.green(part.get('messageTypes').get('regular').get('storePickupProductTitle')),
                             crayons.green(part.get("partNumber")),
                         )
                     )
@@ -114,7 +114,7 @@ class StoreChecker:
                     print(
                         " - {} {} ({})".format(
                             crayons.red("✖"),
-                            crayons.red(part.get("storePickupProductTitle")),
+                            crayons.red(part.get('messageTypes').get('regular').get('storePickupProductTitle')),
                             crayons.red(part.get("partNumber")),
                         )
                     )
