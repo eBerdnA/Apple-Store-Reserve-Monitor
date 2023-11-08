@@ -31,6 +31,9 @@ class Configuration:
         # Store numbers are available here.
         self.appointment_stores = config.get("appointment_stores", [])
 
+def sort_devices_by_title(device_list):
+        # Sorts a list of dictionaries by the 'title' key
+        return sorted(device_list, key=lambda d: d['title'])
 
 class StoreChecker:
     """Class to handle store checking and fetching and processing of stock of apple products."""
@@ -174,7 +177,8 @@ class StoreChecker:
                 print("{}".format(crayons.blue("➜  Looking for device models instead...")))
                 for model in self.configuration.selected_device_models:
                     device_list.append({"model": model})
-        return device_list
+        # return device_list
+        return sort_devices_by_title(device_list)
 
     def check_stores_for_device(self, device):
         """Find all stores that have the device requested available (does not matter if it's in stock or not)."""
